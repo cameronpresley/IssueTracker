@@ -32,3 +32,9 @@ module IssueLayer =
             match newPriority with
             | None -> None
             | Some priority -> Some {id=record.Id; title=record.Title; description=record.Description; priority=priority}
+
+    [<Literal>]
+    let private updateQuery = "Update Issues SET Title=@title, Description=@description, Priority=@priority WHERE Id=@id"
+    let updateIssue issue =
+        let cmd = new SqlCommandProvider<updateQuery, connectionString>()
+        cmd.Execute(title=issue.title, description=issue.description, priority=(issue.priority |> sprintf("%A")), id=issue.id)
