@@ -12,3 +12,23 @@ module IssueLayer =
     let createIssue issue =
         let cmd = new SqlCommandProvider<createQuery, connectionString> ()
         cmd.Execute(Title=issue.title, Description=issue.description, Priority=(issue.priority |> sprintf("%A")))
+
+    let private convertToPriority input =
+        match input with
+        | "ShowStopper" -> Some ShowStopper
+        | "Critical" -> Some Critical
+        | "Annoying" -> Some Annoying
+        | "Trivial" -> Some Trivial
+        | _ -> None
+
+    [<Literal>]
+    let private readQuery = "SELECT * FROM Issues where Id = @id"
+    let readIssue id =
+        let cmd = new SqlCommandProvider<readQuery, connectionString>()
+        match cmd.Execute(id=id) |> Seq.tryHead with
+        | None -> None
+        | Some record ->
+            let newPriority = convertToPriority record.Priority
+            match newPriority with
+            | None -> None
+            | Some priority -> Some {id=record.Id; title=record.Title; description=record.Description; priority=priority}
