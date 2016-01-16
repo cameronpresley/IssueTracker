@@ -38,3 +38,9 @@ module IssueLayer =
     let updateIssue issue =
         let cmd = new SqlCommandProvider<updateQuery, connectionString>()
         cmd.Execute(title=issue.title, description=issue.description, priority=(issue.priority |> sprintf("%A")), id=issue.id)
+
+    [<Literal>]
+    let private deleteQuery = "DELETE FROM Issues WHERE Id=@id"
+    let deleteIssue id =
+        let cmd = new SqlCommandProvider<deleteQuery, connectionString>()
+        cmd.Execute(id=id)
