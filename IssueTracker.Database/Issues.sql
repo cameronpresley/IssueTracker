@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Issues]
+(
+	[Id] INT IDENTITY NOT NULL, 
+    [Title] NVARCHAR(100) NOT NULL, 
+    [Description] NVARCHAR(MAX) NOT NULL, 
+    [Priority] NVARCHAR(50) NOT NULL
+	CONSTRAINT [PK_Issues] PRIMARY KEY CLUSTERED ([Id] ASC)
+)
