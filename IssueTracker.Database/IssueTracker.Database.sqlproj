@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Issues.sql" />
+    <Build Include="Users.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="issue_tracker_debug.publish.xml" />
