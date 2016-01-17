@@ -3,9 +3,12 @@
 
 #load "..\\IssueTracker.Core\\Models.fs"
 #reference @".\bin\Debug\FSharp.Data.SqlClient.dll"
+#load ".\\Connections.fs"
 #load ".\\IssueLayer.fs"
+#load ".\\UserLayer.fs"
 open IssueTracker.Core.Models
 open IssueTracker.DataAccess.IssueLayer
+open IssueTracker.DataAccess.UserLayer
 
 // Define your library scripting code here
 

@@ -2,10 +2,8 @@
 module IssueLayer = 
     open FSharp.Data
     open IssueTracker.Core.Models
-
-    [<Literal>]
-    let connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=IssueTracker.Database;Integrated Security=True"
-
+    open Connections
+    
     [<Literal>]
     let private createQuery = "INSERT INTO Issues (Title, Description, Priority) VALUES (@Title, @Description, @Priority)"
 
