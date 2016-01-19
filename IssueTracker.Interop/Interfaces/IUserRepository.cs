@@ -6,5 +6,6 @@ namespace IssueTracker.Interop.Interfaces
     {
         void AddUser(Models.User user);
         void DeleteUser(Models.User user);
+        Models.User GetUser(int id);
     }
 }

@@ -26,6 +26,13 @@ namespace IssueTracker.Interop.Services
             }
         }
 
+        public Models.User GetUser(int id)
+        {
+            var result = _dbAccess.ReadUser(id);
+            if (result == null) throw new ArgumentException($"Couldn't find user with id of {id}");
+            return result;
+        }
+
         public void DeleteUser(Models.User user)
         {
             _dbAccess.DeleteUser(user.id);
