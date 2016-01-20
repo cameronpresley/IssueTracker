@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using IssueTracker.Core;
 using IssueTracker.DataAccess;
 using Microsoft.FSharp.Core;
@@ -33,6 +35,11 @@ namespace IssueTracker.Interop.Wrappers
 
             _dbAccess.updateUser(user);
         }
+
+        public List<Models.User> ReadAllUsers()
+        {
+            return _dbAccess.readAllUsers().ToList();
+        } 
 
         public void DeleteUser(int id)
         {

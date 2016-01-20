@@ -1,4 +1,5 @@
-﻿using IssueTracker.Core;
+﻿using System.Collections.Generic;
+using IssueTracker.Core;
 
 namespace IssueTracker.Interop.Interfaces
 {
@@ -7,5 +8,6 @@ namespace IssueTracker.Interop.Interfaces
         void AddUser(Models.User user);
         void DeleteUser(Models.User user);
         Models.User GetUser(int id);
+        List<Models.User> GetUsers();
     }
 }
