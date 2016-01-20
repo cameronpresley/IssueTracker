@@ -1,10 +1,11 @@
 ﻿using System;
 using IssueTracker.Core;
+using IssueTracker.Interop.Interfaces;
 using IssueTracker.Interop.Wrappers;
 
 namespace IssueTracker.Interop.Services
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly UserDatabaseAccess _dbAccess;
 

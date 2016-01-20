@@ -1,13 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using IssueTracker.Core;
-using IssueTracker.Interop.Services;
-using IssueTracker.Interop.Wrappers;
+using IssueTracker.Interop.Interfaces;
 
 namespace IssueTracker.Controllers
 {
     public class UserController : ApiController
     {
+        private readonly IUserRepository _repository;
+
+        public UserController(IUserRepository repository)
+        {
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+            _repository = repository;
+        }
+
         // GET: api/User
         public IEnumerable<Models.User> Get()
         {
@@ -17,13 +25,13 @@ namespace IssueTracker.Controllers
         // GET: api/User/5
         public Models.User Get(int id)
         {
-            var repository = new UserRepository(new UserDatabaseAccess());
-            return repository.GetUser(id);
+            return _repository.GetUser(id);
         }
 
         // POST: api/User
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Models.User user)
         {
+
         }
 
         // PUT: api/User/5
