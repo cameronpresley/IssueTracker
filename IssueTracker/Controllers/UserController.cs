@@ -19,7 +19,7 @@ namespace IssueTracker.Controllers
         // GET: api/User
         public IEnumerable<Models.User> Get()
         {
-            return new List<Models.User>();
+            return _repository.GetUsers();
         }
 
         // GET: api/User/5

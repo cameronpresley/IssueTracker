@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using IssueTracker.Core;
 using IssueTracker.Interop.Interfaces;
 using IssueTracker.Interop.Wrappers;
@@ -33,6 +34,11 @@ namespace IssueTracker.Interop.Services
             if (result == null) throw new ArgumentException($"Couldn't find user with id of {id}");
             return result;
         }
+
+        public List<Models.User> GetUsers()
+        {
+            return _dbAccess.ReadAllUsers();
+        } 
 
         public void DeleteUser(Models.User user)
         {
