@@ -9,7 +9,7 @@ namespace IssueTracker.Interop.Wrappers
 {
     public class UserDatabaseAccess
     {
-        private readonly UserLayer.UserDataAccess _dbAccess;
+        private readonly UserLayer.IUserDataAccess _dbAccess;
 
         public UserDatabaseAccess()
         {
@@ -20,12 +20,12 @@ namespace IssueTracker.Interop.Wrappers
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
-            _dbAccess.createUser(user);
+            _dbAccess.CreateUser(user);
         }
 
         public Models.User ReadUser(int id)
         {
-            var user = _dbAccess.readUser(id);
+            var user = _dbAccess.ReadUser(id);
             return OptionModule.IsSome(user) ? user.Value : null;
         }
 
@@ -33,17 +33,17 @@ namespace IssueTracker.Interop.Wrappers
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
-            _dbAccess.updateUser(user);
+            _dbAccess.UpdateUser(user);
         }
 
         public List<Models.User> ReadAllUsers()
         {
-            return _dbAccess.readAllUsers().ToList();
+            return _dbAccess.ReadAllUsers().ToList();
         } 
 
         public void DeleteUser(int id)
         {
-            _dbAccess.deleteUser(id);
+            _dbAccess.DeleteUser(id);
         }
     }
 }

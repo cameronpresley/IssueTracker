@@ -2,30 +2,34 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using IssueTracker.Core;
-using IssueTracker.Interop.Interfaces;
+using IssueTracker.DataAccess;
+using Microsoft.FSharp.Core;
 
 namespace IssueTracker.Controllers
 {
     public class UserController : ApiController
     {
-        private readonly IUserRepository _repository;
+        private readonly UserLayer.IUserDataAccess _dataAcess;
 
-        public UserController(IUserRepository repository)
+        public UserController(UserLayer.IUserDataAccess dataAccess)
         {
-            if (repository == null) throw new ArgumentNullException(nameof(repository));
-            _repository = repository;
+            if (dataAccess == null) throw new ArgumentNullException(nameof(dataAccess));
+            _dataAcess = dataAccess;
         }
 
         // GET: api/User
         public IEnumerable<Models.User> Get()
         {
-            return _repository.GetUsers();
+            return _dataAcess.ReadAllUsers();
         }
 
         // GET: api/User/5
         public Models.User Get(int id)
         {
-            return _repository.GetUser(id);
+            var result = _dataAcess.ReadUser(id);
+            if (OptionModule.IsNone(result))
+                return null;
+            return result.Value;
         }
 
         // POST: api/User
