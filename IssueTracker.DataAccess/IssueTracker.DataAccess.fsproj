@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Connections.fs" />
-    <Compile Include="IssueLayer.fs" />
     <Compile Include="UserLayer.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />
