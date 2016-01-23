@@ -1,8 +1,6 @@
 using Microsoft.Practices.Unity;
 using System.Web.Http;
-using IssueTracker.Interop.Interfaces;
-using IssueTracker.Interop.Services;
-using IssueTracker.Interop.Wrappers;
+using IssueTracker.DataAccess;
 using Unity.WebApi;
 
 namespace IssueTracker
@@ -17,8 +15,8 @@ namespace IssueTracker
             // it is NOT necessary to register your controllers
             
             // e.g. container.RegisterType<ITestService, TestService>();
-            container.RegisterInstance<UserDatabaseAccess>(new UserDatabaseAccess());
-            container.RegisterInstance<IUserRepository>(new UserRepository(container.Resolve<UserDatabaseAccess>()));
+            container.RegisterInstance<UserLayer.IUserDataAccess>(new UserLayer.UserDataAccess());
+            //container.RegisterInstance<IUserRepository>(new UserRepository(container.Resolve<UserDatabaseAccess>()));
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

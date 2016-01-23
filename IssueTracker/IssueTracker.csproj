@@ -173,9 +173,9 @@
       <Project>{b720d610-ea36-4b2a-b456-9bcc938dba40}</Project>
       <Name>IssueTracker.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IssueTracker.Interop\IssueTracker.Interop.csproj">
-      <Project>{642b2589-fc02-4403-a4e1-787d5ee316d4}</Project>
-      <Name>IssueTracker.Interop</Name>
+    <ProjectReference Include="..\IssueTracker.DataAccess\IssueTracker.DataAccess.fsproj">
+      <Project>{86401421-5103-4f6a-8fc1-3f6a931c682e}</Project>
+      <Name>IssueTracker.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
