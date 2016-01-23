@@ -35,7 +35,14 @@ namespace IssueTracker.Controllers
         // POST: api/User
         public void Post([FromBody]Models.User user)
         {
-
+            if (OptionModule.IsNone(_dataAcess.ReadUser(user.Id)))
+            {
+                _dataAcess.CreateUser(user);
+            }
+            else
+            {
+                _dataAcess.UpdateUser(user);
+            }
         }
 
         // PUT: api/User/5
@@ -46,6 +53,7 @@ namespace IssueTracker.Controllers
         // DELETE: api/User/5
         public void Delete(int id)
         {
+            _dataAcess.DeleteUser(id);
         }
     }
 }
