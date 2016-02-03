@@ -15,6 +15,7 @@ namespace IssueTracker
             // it is NOT necessary to register your controllers
             
             container.RegisterInstance<UserLayer.IUserDataAccess>(new UserLayer.UserDataAccess());
+            container.RegisterInstance<IssueLayer.IIssueDataAccess>(new IssueLayer.IssueDataAccess());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

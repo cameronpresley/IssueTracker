@@ -2,40 +2,50 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>Sample Main Page</title>
+  <meta charset="utf-8" />
+  <title>Sample Main Page</title>
 </head>
 <body>
 <main>
-    <h1>Issues</h1>
-    <div id="issues">
-        <div id="toDo">
-            <h2>To Do</h2>
-        </div>
-        <div id="inProgress">
-            <h2>In Progress</h2>
-        </div>
-        <div id="done">
-            <h2>Done</h2>
-        </div>
-    </div>
+  <h1>Issues</h1>
+  <div id="issues">
+      <div id="toDo">
+          <h2>To Do</h2>
+      </div>
+      <div id="inProgress">
+          <h2>In Progress</h2>
+      </div>
+      <div id="done">
+          <h2>Done</h2>
+      </div>
+  </div>
 </main>
 
 <script src=".\vendor\jquery-1.11.3.min.js"></script>
 <script>
-	function createItem() {	
-		var summary = "<summary>Title For Ticket</summary>";
-		var details = "<details>" + summary + "<h4>Details for the ticket</h4></details>";
-		var button = "<button onclick='alert(\"You clicked me\");'>Next Status</button>";
-		return "<div class='draggable' draggable='true' >" + details + button + "</div>";
-    }
-	
-    $("#done").append(createItem());
-    $("#toDo").append(createItem());
-    $("#inProgress").append(createItem());
+  function createItem(issue) {
+	   var summary = "<summary>" + issue.Title + "</summary>";
+	    var details = "<details>" + issue.Description + "<h4>Details for the ticket</h4></details>";
+	     var button = "<button onclick='alert(\"You clicked me\");'>Next Status</button>";
+	      return "<div>" + summary + details + button + "</div>";
+  }
+  function convertStatusToString(status) {
+    if (status === 0) return "#toDo";
+    if (status === 1) return "#inProgress";
+    if (status === 2) return "#done";
+    return "";
+  }
 
-	var possibleDivs = document.querySelectorAll('.draggable');
-	var x = 10;
+  var uri = "http://localhost:58318/api/Issue";
+  function readIssues() {
+    $.getJSON(uri)
+      .done(function (data) {
+        var issue = data[i];
+        var item = createItem(issue);
+        $(item).append(item);
+      });
+  }
+  readIssues();
 </script>
 </body>
 </html>

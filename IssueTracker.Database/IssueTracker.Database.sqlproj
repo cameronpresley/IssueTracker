@@ -65,4 +65,7 @@
   <ItemGroup>
     <None Include="issue_tracker_debug.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="IssueTracker.Database.refactorlog" />
+  </ItemGroup>
 </Project>
